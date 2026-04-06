@@ -1,254 +1,240 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,200;1,300&display=swap");
+:root {
+    --bg-dark: #050b14;
+    --card-bg: rgba(10, 20, 35, 0.7);
+    --border-glow: #00ffcc44;
+    --accent-glow: #00ffcc;
+    --text-main: #e0faff;
+    --text-dim: #70a0aa;
+    --status-sleep: #555;
+    --status-listen: #00ffcc;
+    --status-process: #ffcc00;
+}
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: rgb(0, 0, 0);
-  position: fixed;
-  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rajdhani', sans-serif;
 }
 
-button {
-  color: rgb(232, 215, 215);
-  top: 50%;
-  left: 50%;
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-label {
-  color: rgb(0, 163, 60);
-  text-align: left;
+.background-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 204, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 204, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+    pointer-events: none;
 }
 
-input {
-  color: black;
-  outline: none;
-  border: none;
-  border-bottom: 3px solid rgb(179, 174, 174);
-  width: 60vw;
-  margin-bottom: 10px;
+/* --- Top Bar --- */
+.top-bar {
+    height: 70px;
+    border-bottom: 1px solid var(--border-glow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    background: rgba(5, 11, 20, 0.9);
 }
 
-#sub_btn {
-  background-color: rgb(213, 213, 213);
-  color: white;
-  width: 80px;
-  padding: 10px 5px;
-  outline: none;
-  border: none;
-  border-radius: 10px;
+.branding h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    color: var(--accent-glow);
+    text-shadow: 0 0 15px var(--accent-glow);
 }
 
-.machine {
-  background-color: rgb(196, 175, 175);
-  height: 100vh;
-  width: 100vw;
-  user-select: none;
+.status-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.machine * {
-  position: absolute;
+.status-pill {
+    padding: 6px 15px;
+    border-radius: 20px;
+    border: 1px solid #444;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-#heart {
-  bottom: 0;
-  left: 0;
-  margin: 40px;
-  transition: 0.67s;
-  box-shadow: 5px 5px 30px rgb(33, 33, 238);
-}
-#heart:hover{
-  box-shadow: 15px 15px 10px rgb(33, 33, 238);
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--status-sleep);
 }
 
-#iron_man {
-  bottom: 0;
-  right: 0;
+.status-pill.listening .dot { background: var(--status-listen); box-shadow: 0 0 10px var(--status-listen); }
+.status-pill.processing .dot { background: var(--status-process); box-shadow: 0 0 10px var(--status-process); }
+
+.btn-primary {
+    background: transparent;
+    border: 1px solid var(--accent-glow);
+    color: var(--accent-glow);
+    padding: 8px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Orbitron', sans-serif;
 }
 
-#time {
-  color: white;
-  top: 10px;
-  left: 10px;
+.btn-primary:hover {
+    background: var(--accent-glow);
+    color: #000;
 }
 
-.in_middle {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 50px;
-  border-radius: 10px;
-  display: flex;
-  z-index: 10000;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  /* width: 80vw;
-  height: 70vh; */
-  /* overflow-y: scroll; */
+/* --- Dashboard Layout --- */
+.dashboard {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    grid-template-rows: 1fr 200px;
+    gap: 20px;
+    padding: 20px;
 }
 
-.in_middle * {
-  position: static;
+/* --- Mic Core --- */
+.core-container {
+    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.in_middle::-webkit-scrollbar {
-  display: block;
-}
-.in_middle::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-.in_middle::-webkit-scrollbar-thumb {
-  background: red;
-  border-radius: 10px;
-}
-
-.icon {
-  height: 50px;
-  width: 50px;
-  object-fit: cover;
-  padding: 3px;
-  background-color: white;
-  border-radius: 50%;
+.mic-ripple {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: var(--card-bg);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--border-glow);
+    z-index: 5;
 }
 
-.cont * {
-  position: static;
+.mic-icon i {
+    font-size: 3rem;
+    color: var(--accent-glow);
 }
 
-.cont {
-  top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 50px;
+/* Animation Circles */
+.circle {
+    position: absolute;
+    border: 1px solid var(--accent-glow);
+    border-radius: 50%;
+    opacity: 0;
 }
 
-.battery {
-  left: 50%;
-  width: 100px;
-  transform: translateX(-50%);
+.listening-active .circle {
+    animation: ripple 2s infinite;
 }
 
-.clock {
-  width: 150px;
+@keyframes ripple {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(2.5); opacity: 0; }
 }
 
-.internet {
-  top: 100px;
-  left: 5px;
-  width: 120px;
+.circle-2 { animation-delay: 0.6s !important; }
+.circle-3 { animation-delay: 1.2s !important; }
+
+.transcript-box {
+    margin-top: 40px;
+    text-align: center;
+    max-width: 600px;
 }
 
-.temp {
-  top: 10px;
-  right: 10px;
-  text-align: right;
-  font-size: 1.5rem;
+#live-transcript {
+    font-size: 1.8rem;
+    color: var(--text-dim);
+    font-style: italic;
+    min-height: 2.5rem;
 }
 
-.temp * {
-  position: static;
+/* --- Side Panels --- */
+.side-panel, .logs-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border-glow);
+    padding: 20px;
+    border-radius: 4px;
 }
 
-.messages {
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  max-height: 600px;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 15px;
-  z-index: 1000;
+.logs-panel {
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
 }
 
-.messages::-webkit-scrollbar {
-  display: none;
+.log-container {
+    margin-top: 10px;
+    flex: 1;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 0.9rem;
 }
 
-.usermsg {
-  text-align: right;
-  width: 300px;
-  color: rgb(113, 113, 235);
+.log-entry { margin-bottom: 5px; }
+.log-entry .time { color: var(--accent-glow); margin-right: 10px; }
+.log-entry.user { color: #fff; }
+.log-entry.astra { color: var(--accent-glow); }
+
+/* --- Modals --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-.jmsg {
-  text-align: left;
-  margin-top: 5px;
-  width: 300px;
-  color: rgb(245, 61, 61);
+.modal {
+    background: #0a1423;
+    border: 1px solid var(--accent-glow);
+    padding: 40px;
+    width: 450px;
+    box-shadow: 0 0 30px rgba(0,255,204,0.2);
 }
 
-.commands {
-  display: none;
-  background-color: white;
+.input-group {
+    margin: 20px 0;
 }
 
-.commands p {
-  color: rgb(197, 0, 0);
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    font-size: 0.8rem;
 }
 
-#start_jarvis_btn {
-  border: none;
-  outline: none;
-  position: fixed;
-  left: 200px;
-  transform: translateX(0);
-  top: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+.input-group input {
+    width: 100%;
+    background: #050b14;
+    border: 1px solid #333;
+    padding: 10px;
+    color: #fff;
+    outline: none;
 }
 
-#start_jarvis_btn img {
-  height: 300px;
-  margin-left: 30%;
-  padding-left: 300px;
-}
-
-
-#subButton{
-   width: auto;
-   height: auto;
-   padding: 6px;
-   border-radius: 10px;
-   border: 2px solid black;
-   background-color: white;
-}
-#subButton:hover{
-  background-color: rgb(228, 18, 18);
-  box-shadow: 2px 2px  10px black;
-}
-
-.MyName{
-  width: 400px;
-  height: 220px;
-  margin-top:15%;
-  margin-left: 40%;
-  transition: 0.6s;
-
-}
-.MyName2{
-  transition: 0.67s;
-  box-shadow: 2px 2px 20px rgb(114, 14, 14);
-}
-.MyName2:hover{
-  box-shadow: 8px 8px 20px rgb(114, 14, 14);
-}
-
-#commands{
-  margin: 7px ;
-  padding: 10px ;
-  transition: 0.67s;
-  color: red;
-  
-}
-#commands:hover{
-  box-shadow: 8px 8px 20px rgb(114, 14, 14);
-}
+.input-group input:focus { border-color: var(--accent-glow); }

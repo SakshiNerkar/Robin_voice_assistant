@@ -3,7 +3,7 @@
  * @description Master logic for autonomous code and file generation.
  */
 
-const codeLogic = require('../../ai/codeHandler');
+const codeLogic = require('../ai/codeHandler');
 
 const handleSystemGeneration = async (req, res) => {
     const { prompt } = req.body;

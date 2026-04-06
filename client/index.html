@@ -1,98 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTRA NEXUS - Advanced AI Desktop Interface</title>
+    <!-- Modern Tech Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title> Robin  </title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    
-    <div class="machine"></div>
-        <div class="clock cont ">
-            <img src="https://pixy.org/download/1122748/" alt="" class="icon">
-             <p id="Time">Time </p>
+    <div class="background-grid"></div>
+
+    <!-- Status Indicators & Control -->
+    <header class="top-bar">
+        <div class="branding">
+            <h1><i class="fa-solid fa-microchip"></i> ASTRA NEXUS</h1>
+        </div>
+        <div class="status-container">
+            <div id="status-indicator" class="status-pill sleeping">
+                <span class="dot"></span>
+                <span id="status-text">Standby</span>
+            </div>
+            <button id="wake-btn" class="btn-primary"><i class="fa-solid fa-power-off"></i> Initialize System</button>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <!-- Center Core (Listening Animation) -->
+        <div class="core-container">
+            <div class="mic-ripple" id="mic-graphics">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+                <div class="mic-icon">
+                    <i class="fa-solid fa-microphone"></i>
+                </div>
+            </div>
+
+            <div class="transcript-box">
+                <p id="live-transcript">"Awaiting Input..."</p>
+                <div class="audio-wave" id="audio-wave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
         </div>
 
-        <div class="internet cont">
-             <img src="https://cdn.dribbble.com/users/2700162/screenshots/5981553/media/a283115b786c7c1649a3c674ff407bc3.gif?resize=400x0" alt="" class="icon">
-            <p id="internet">Status</p>
+        <!-- System Logs & Command History -->
+        <div class="logs-panel">
+            <h3><i class="fa-solid fa-terminal"></i> Neural Terminal</h3>
+            <div class="log-container" id="command-log">
+                <div class="log-entry system">
+                    <span class="time">[System]</span> Astra Nexus Core initialized. Ready for command "Astra".
+                </div>
+            </div>
         </div>
 
-        <div class="battery cont">
-            <img src="https://th.bing.com/th/id/OIP.LXYE6EbJYgepDfRHtfWaHgHaDt?rs=1&pid=ImgDetMain" alt="" class="icon">
-            <p id="battery"> battery</p>
-        </div>
-        
+        <!-- Reminders & Timer Sidebar -->
+        <aside class="side-panel">
+            <h3><i class="fa-solid fa-stopwatch"></i> Productivity Timer</h3>
+            <div id="pomodoro-container" class="pomodoro-box inactive">
+                <div id="pomodoro-time">25:00</div>
+                <div id="pomodoro-status">Inactive</div>
+            </div>
 
-        <div class="MyName">
-            <h1 class="MyName2">I am Your Virtual Assistant Robin 🤖</h1>
-        </div>
-        
-        <div class="temp">
-    
-            <img  id="img" alt="Weather">
-            <p id="location"></p>
-            <p id="country"></p>
-            <p id="weatherT"></p>
-            <p id="weatherD"></p>
-            <p id="oTemp"></p>
-            <p id="feelLikeTemp"></p>
-            <p id="minT"></p>
-            <p id="maxT"></p>
-            <p id="pressure"></p>
-            <p id="Humidity"></p>
-            <p id="WindSpeed"></p>
-            <br>
-            <br>
-            <br>
-            <p id="commands"> <a style="color: red;" href="commands.html"><img src="/commands.png" alt="COMMANDS" style="width: 25px; height: 25px;"> See All Commands  </a></p>
-        </div>
-        
-        <img src="https://c.tenor.com/ow94qLGI8WsAAAAC/ai.gif" alt="" id="heart">
-        <!--<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXh5aGVoY3pndm9yY2E4bm9hcHFxd2Z3Znl1eGEzOG1mZDc1Mm9uMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Xf1Zj5nYsoTcBE4BIN/giphy.gif" alt="" id="Iron_man"> -->
-     </div>
-     <button id="start"  id="Start start_jarvis_btn"     title="Start-Robin">
-        <img height="200px" width="200px" src="https://cdn.dribbble.com/users/3208619/screenshots/6606144/__02-____.gif" alt="Start">
-    </button>
-     
-    
+            <h3 style="margin-top:20px;"><i class="fa-regular fa-bell"></i> Scheduled Events</h3>
+            <ul id="reminders-list" class="empty-list">
+                <li class="placeholder">No events scheduled</li>
+            </ul>
+        </aside>
+    </main>
 
-
-    <div class="ronbin_setUp in_middle">
-        <label for="">Enter Your Name </label>
-        <input type="text" name="" id="" placeholder="Your Name ">
-        <br>
-        <label for="">Enter Your Github Profile </label>
-        <input type="text" placeholder="Github URl ">
-        <br>
-        <label for="">Enter Your LinkedIn Profile </label>
-        <input type="text" placeholder="LinkedIn URL">
-        <br>
-        <label for="">Enter Your Instagram profile  </label>
-        <input type="text" placeholder="Instagram profile url">
-        <br>
-        <label for="">Enter Your Location  </label>
-        <input type="text" placeholder="Location">
-        <br>
-        <button id="subButton" class="sub"> Submit </button>
+    <!-- Welcome Modal -->
+    <div class="modal-overlay" id="setupModal">
+        <div class="modal">
+            <h2><i class="fa-solid fa-user-astronaut"></i> System Link Established</h2>
+            <p>Welcome, User. Provide credentials for the Nexus interface.</p>
+            <div class="input-group">
+                <label>User Identifier</label>
+                <input type="text" id="setup-name" placeholder="Name/Alias">
+            </div>
+            <div class="input-group">
+                <label>Geographic Node</label>
+                <input type="text" id="setup-location" placeholder="City">
+            </div>
+            <button id="subButton" class="btn-primary">Authenticate</button>
+        </div>
     </div>
 
-    <div class="messages">
-        <dic class="commands in_middle">
-                    
-        </dic>
-    </div>
-
-    <button id="speak" style="display: none;">speak</button>
-        
-
-    
-    
+    <!-- The System Logic -->
     <script src="app.js"></script>
-
-    
-    
 </body>
-</html>
 
+</html>

@@ -1,4 +1,4 @@
-// ASTRA Frontend Logic Engine
+// ASTRA NEXUS Frontend Logic Engine
 
 // === DOM Elements ===
 const statusIndicator = document.getElementById("status-indicator");
@@ -16,6 +16,7 @@ let isListening = false;
 let isProcessing = false;
 let userName = "Commander";
 const WAKE_WORD = "astra";
+const NEXUS_NAME = "nexus";
 
 // Initialize Speech Synthesis
 const synth = window.speechSynthesis;
@@ -35,13 +36,11 @@ function setStatus(state) {
     micGraphics.className = `mic-ripple ${state === 'listening' ? 'listening-active' : ''}`;
 
     if (state === 'sleeping') {
-        statusText.innerText = "Sleeping";
-        isListening = false;
-        wakeBtn.innerHTML = '<i class="fa-solid fa-power-off"></i> Initialize';
+        wakeBtn.innerHTML = '<i class="fa-solid fa-power-off"></i> Initialize System';
     } else if (state === 'listening') {
         statusText.innerText = "Listening";
         isListening = true;
-        wakeBtn.innerHTML = '<i class="fa-solid fa-microphone-slash"></i> Sleep Mode';
+        wakeBtn.innerHTML = '<i class="fa-solid fa-microphone-slash"></i> Active Mode';
     } else if (state === 'processing') {
         statusText.innerText = "Processing";
         isProcessing = true;
@@ -81,7 +80,7 @@ function speak(text) {
 
 async function launchOSApp(appName) {
     try {
-        const res = await fetch('http://localhost:5500/api/launch', {
+        const res = await fetch('http://localhost:5500/api/nexus/launch', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ appName })
@@ -97,7 +96,7 @@ async function launchOSApp(appName) {
 
 async function sendSystemCommand(action) {
     try {
-        const res = await fetch('http://localhost:5500/api/system', {
+        const res = await fetch('http://localhost:5500/api/nexus/system', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action })
@@ -113,7 +112,7 @@ async function sendSystemCommand(action) {
 async function askAI(prompt) {
     speak("Processing...");
     try {
-        const res = await fetch('http://localhost:5500/api/ai', {
+        const res = await fetch('http://localhost:5500/api/nexus/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ prompt })
@@ -128,7 +127,7 @@ async function askAI(prompt) {
 
 async function closeOSApp(appName) {
     try {
-        const res = await fetch('http://localhost:5500/api/close', {
+        const res = await fetch('http://localhost:5500/api/nexus/close', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ appName })
@@ -145,7 +144,7 @@ async function closeOSApp(appName) {
 async function buildWebsite(topic) {
     speak(`I am writing the code for a website about ${topic}. This might take a few seconds.`);
     try {
-        const res = await fetch('http://localhost:5500/api/code', {
+        const res = await fetch('http://localhost:5500/api/nexus/generate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ topic })
@@ -245,7 +244,7 @@ async function processCommand(transcript) {
 
     // 1. DYNAMIC MODULES & ANALYTICS PIPELINE (Backend)
     try {
-        const res = await fetch('http://localhost:5500/api/process', {
+        const res = await fetch('http://localhost:5500/api/nexus/process', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ command: commandPayload })

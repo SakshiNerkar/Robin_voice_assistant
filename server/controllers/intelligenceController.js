@@ -3,7 +3,7 @@
  * @description Controller for LLM-driven conversational logic.
  */
 
-const astraIntelligence = require('../../ai/aiHandler');
+const astraIntelligence = require('../ai/aiHandler');
 
 const handleChatInteraction = async (req, res) => {
     const { prompt } = req.body;
