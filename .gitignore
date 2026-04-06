@@ -1,0 +1,13 @@
+node_modules/
+.env
+logs/
+generated/
+data/history.json
+data/memory.json
+*.log
+.DS_Store
+dist/
+build/
+bin/
+obj/
+temp/

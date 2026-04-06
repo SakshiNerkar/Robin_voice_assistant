@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTRA NEXUS - Advanced AI Desktop Interface</title>
+    <!-- Modern Tech Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-grid"></div>
+
+    <!-- Status Indicators & Control -->
+    <header class="top-bar">
+        <div class="branding">
+            <h1><i class="fa-solid fa-microchip"></i> ASTRA NEXUS</h1>
+        </div>
+        <div class="status-container">
+            <div id="status-indicator" class="status-pill sleeping">
+                <span class="dot"></span>
+                <span id="status-text">Standby</span>
+            </div>
+            <button id="wake-btn" class="btn-primary"><i class="fa-solid fa-power-off"></i> Initialize System</button>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <!-- Center Core (Listening Animation) -->
+        <div class="core-container">
+            <div class="mic-ripple" id="mic-graphics">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+                <div class="mic-icon">
+                    <i class="fa-solid fa-microphone"></i>
+                </div>
+            </div>
+
+            <div class="transcript-box">
+                <p id="live-transcript">"Awaiting Input..."</p>
+                <div class="audio-wave" id="audio-wave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Logs & Command History -->
+        <div class="logs-panel">
+            <h3><i class="fa-solid fa-terminal"></i> Neural Terminal</h3>
+            <div class="log-container" id="command-log">
+                <div class="log-entry system">
+                    <span class="time">[System]</span> Astra Nexus Core initialized. Ready for command "Astra".
+                </div>
+            </div>
+        </div>
+
+        <!-- Reminders & Timer Sidebar -->
+        <aside class="side-panel">
+            <h3><i class="fa-solid fa-stopwatch"></i> Productivity Timer</h3>
+            <div id="pomodoro-container" class="pomodoro-box inactive">
+                <div id="pomodoro-time">25:00</div>
+                <div id="pomodoro-status">Inactive</div>
+            </div>
+
+            <h3 style="margin-top:20px;"><i class="fa-regular fa-bell"></i> Scheduled Events</h3>
+            <ul id="reminders-list" class="empty-list">
+                <li class="placeholder">No events scheduled</li>
+            </ul>
+        </aside>
+    </main>
+
+    <!-- Welcome Modal -->
+    <div class="modal-overlay" id="setupModal">
+        <div class="modal">
+            <h2><i class="fa-solid fa-user-astronaut"></i> System Link Established</h2>
+            <p>Welcome, User. Provide credentials for the Nexus interface.</p>
+            <div class="input-group">
+                <label>User Identifier</label>
+                <input type="text" id="setup-name" placeholder="Name/Alias">
+            </div>
+            <div class="input-group">
+                <label>Geographic Node</label>
+                <input type="text" id="setup-location" placeholder="City">
+            </div>
+            <button id="subButton" class="btn-primary">Authenticate</button>
+        </div>
+    </div>
+
+    <!-- The System Logic -->
+    <script src="app.js"></script>
+</body>
+
+</html>
